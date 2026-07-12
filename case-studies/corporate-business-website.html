@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- ============================================================
+       EDIT THESE FOR EACH PROJECT
+       ============================================================ -->
+  <title>Corporate Business Website — Case Study | boludevs</title>
+  <meta name="description" content="How I built a conversion-focused corporate website that helped a Lagos business establish a credible online presence."/>
+  <meta name="robots" content="index, follow"/>
+  <meta property="og:title" content="Corporate Business Website — Case Study | boludevs"/>
+  <meta property="og:description" content="A full case study on the design and development process."/>
+  <meta property="og:image" content="../images/preview-image.png"/>
+  <meta property="og:type" content="article"/>
+  <!-- ============================================================ -->
+  <link rel="icon" type="image/x-icon" href="../favicon.ico"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../style.css"/>
+  <style>
+    /* ============================================================
+       CASE STUDY PAGE STYLES
+       ============================================================ */
+
+    /* Reset for case study context */
+    .cs-page { padding-top: 0; }
+
+    /* ---- HERO ---- */
+    .cs-hero {
+      position: relative;
+      min-height: 90vh;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+      background: var(--slate-900);
+    }
+    .cs-hero-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: .45;
+      transition: transform 8s ease;
+    }
+    .cs-hero:hover .cs-hero-img { transform: scale(1.04); }
+
+    .cs-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(15,23,42,.2) 0%,
+        rgba(15,23,42,.6) 50%,
+        rgba(15,23,42,.95) 100%
+      );
+    }
+    .cs-hero-content {
+      position: relative;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 6rem 1.25rem 4rem;
+      width: 100%;
+      color: var(--white);
+    }
+    @media (min-width: 1024px) { .cs-hero-content { padding: 6rem 2rem 4rem; } }
+
+    .cs-hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: .625rem;
+      margin-bottom: 1.5rem;
+    }
+    .cs-hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .375rem;
+      border-radius: 9999px;
+      padding: .375rem .875rem;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .cs-hero-badge.cat  { background: rgba(59,130,246,.25); color: #93c5fd; border: 1px solid rgba(59,130,246,.3); }
+    .cs-hero-badge.niche{ background: rgba(99,102,241,.25); color: #c7d2fe; border: 1px solid rgba(99,102,241,.3); }
+
+    .cs-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -.025em;
+      color: var(--white);
+      max-width: 44rem;
+      margin-bottom: 1.25rem;
+    }
+    .cs-hero-desc {
+      font-size: 1.125rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,.75);
+      max-width: 36rem;
+      margin-bottom: 2rem;
+    }
+    .cs-hero-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem;
+    }
+    .cs-btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      border-radius: 9999px;
+      background: var(--brand-600);
+      color: var(--white);
+      padding: .875rem 1.75rem;
+      font-size: .9375rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background .2s, transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 20px rgba(37,99,235,.4);
+    }
+    .cs-btn-primary:hover { background: var(--brand-700); transform: translateY(-2px); }
+    .cs-btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      border-radius: 9999px;
+      border: 2px solid rgba(255,255,255,.3);
+      color: var(--white);
+      padding: .875rem 1.75rem;
+      font-size: .9375rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: border-color .2s, background .2s, transform .2s;
+      background: rgba(255,255,255,.08);
+      backdrop-filter: blur(8px);
+    }
+    .cs-btn-secondary:hover { border-color: rgba(255,255,255,.6); background: rgba(255,255,255,.15); transform: translateY(-2px); }
+    .cs-btn-disabled {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      border-radius: 9999px;
+      border: 2px solid rgba(255,255,255,.15);
+      color: rgba(255,255,255,.4);
+      padding: .875rem 1.75rem;
+      font-size: .9375rem;
+      font-weight: 700;
+      cursor: not-allowed;
+    }
+
+    /* ---- QUICK INFO STRIP ---- */
+    .cs-info-strip {
+      background: var(--white);
+      border-bottom: 1px solid var(--slate-100);
+      padding: 1.5rem 0;
+    }
+    .cs-info-strip-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    @media (min-width: 1024px) { .cs-info-strip-inner { padding: 0 2rem; } }
+    .cs-info-item { display: flex; flex-direction: column; gap: .25rem; }
+    .cs-info-label { font-size: .75rem; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--slate-400); }
+    .cs-info-value { font-size: .9375rem; font-weight: 700; color: var(--slate-900); }
+
+    /* ---- SECTION WRAPPER ---- */
+    .cs-section {
+      padding: 5rem 0;
+      border-bottom: 1px solid var(--slate-100);
+    }
+    .cs-section:last-of-type { border-bottom: none; }
+    .cs-section.dark {
+      background: var(--slate-900);
+      border-bottom: none;
+      color: var(--white);
+    }
+    .cs-section.grey { background: var(--slate-50); }
+    .cs-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+    @media (min-width: 1024px) { .cs-container { padding: 0 2rem; } }
+    .cs-container.narrow { max-width: 56rem; }
+
+    .cs-label {
+      display: inline-block;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--brand-600);
+      margin-bottom: .875rem;
+    }
+    .cs-section.dark .cs-label { color: var(--brand-300); }
+
+    .cs-section h2 {
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      font-weight: 800;
+      letter-spacing: -.025em;
+      color: var(--slate-900);
+      margin-bottom: 1.25rem;
+      line-height: 1.2;
+    }
+    .cs-section.dark h2 { color: var(--white); }
+
+    .cs-body-text {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--slate-600);
+    }
+    .cs-section.dark .cs-body-text { color: rgba(255,255,255,.7); }
+    .cs-body-text + .cs-body-text { margin-top: 1rem; }
+
+    /* ---- 2-COL LAYOUT ---- */
+    .cs-two-col {
+      display: grid;
+      gap: 3rem;
+      align-items: start;
+    }
+    @media (min-width: 768px) { .cs-two-col { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1024px) { .cs-two-col { grid-template-columns: 3fr 2fr; } }
+
+    /* ---- BULLET LIST ---- */
+    .cs-list { list-style: none; display: flex; flex-direction: column; gap: .75rem; margin-top: 1.25rem; }
+    .cs-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: .75rem;
+      font-size: .9375rem;
+      line-height: 1.6;
+      color: var(--slate-600);
+    }
+    .cs-section.dark .cs-list li { color: rgba(255,255,255,.7); }
+    .cs-list-dot {
+      flex-shrink: 0;
+      margin-top: .3rem;
+      width: .5rem;
+      height: .5rem;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--brand-500), var(--indigo-500));
+    }
+
+    /* ---- SERVICES GRID ---- */
+    .cs-services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    @media (min-width: 640px)  { .cs-services-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (min-width: 1024px) { .cs-services-grid { grid-template-columns: repeat(4, 1fr); } }
+
+    .cs-service-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: .75rem;
+      border-radius: 1rem;
+      border: 1px solid var(--slate-100);
+      background: var(--white);
+      padding: 1.5rem 1rem;
+      transition: transform .3s, box-shadow .3s, border-color .3s;
+    }
+    .cs-service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(37,99,235,.1);
+      border-color: var(--brand-200);
+    }
+    .cs-service-icon {
+      width: 3rem;
+      height: 3rem;
+      border-radius: .75rem;
+      background: linear-gradient(135deg, var(--brand-500), var(--indigo-600));
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .cs-service-card span { font-size: .875rem; font-weight: 600; color: var(--slate-700); }
+
+    /* ---- TECH BADGES ---- */
+    .cs-tech-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .625rem;
+      margin-top: 1.5rem;
+    }
+    .cs-tech-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .375rem;
+      border-radius: 9999px;
+      border: 1.5px solid var(--slate-200);
+      background: var(--white);
+      padding: .5rem 1rem;
+      font-size: .875rem;
+      font-weight: 600;
+      color: var(--slate-700);
+      transition: border-color .2s, background .2s, transform .2s;
+    }
+    .cs-tech-badge:hover {
+      border-color: var(--brand-400);
+      background: var(--brand-50);
+      color: var(--brand-700);
+      transform: translateY(-2px);
+    }
+    .cs-tech-dot {
+      width: .5rem;
+      height: .5rem;
+      border-radius: 50%;
+      background: var(--brand-500);
+    }
+
+    /* ---- GALLERY ---- */
+    .cs-gallery {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    @media (min-width: 640px)  { .cs-gallery { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .cs-gallery { grid-template-columns: repeat(3, 1fr); } }
+
+    .cs-gallery-item {
+      position: relative;
+      border-radius: 1rem;
+      overflow: hidden;
+      cursor: pointer;
+      border: 1px solid var(--slate-100);
+      background: var(--slate-100);
+    }
+    .cs-gallery-item img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      transition: transform .5s ease;
+      display: block;
+    }
+    .cs-gallery-item:hover img { transform: scale(1.06); }
+    .cs-gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(15,23,42,.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    .cs-gallery-item:hover .cs-gallery-overlay { opacity: 1; }
+    .cs-gallery-overlay svg { color: var(--white); }
+
+    /* ---- LIGHTBOX ---- */
+    .cs-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(0,0,0,.92);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      backdrop-filter: blur(8px);
+    }
+    .cs-lightbox.open { display: flex; }
+    .cs-lightbox img {
+      max-width: 90vw;
+      max-height: 85vh;
+      border-radius: 1rem;
+      object-fit: contain;
+      box-shadow: 0 24px 64px rgba(0,0,0,.5);
+    }
+    .cs-lightbox-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 9999px;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.2);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .cs-lightbox-close:hover { background: rgba(255,255,255,.2); }
+    .cs-lightbox-prev,
+    .cs-lightbox-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 3rem;
+      height: 3rem;
+      border-radius: 9999px;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.2);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .cs-lightbox-prev { left: 1rem; }
+    .cs-lightbox-next { right: 1rem; }
+    .cs-lightbox-prev:hover,
+    .cs-lightbox-next:hover { background: rgba(255,255,255,.2); }
+
+    /* ---- RESULTS ---- */
+    .cs-results-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    @media (min-width: 768px) { .cs-results-grid { grid-template-columns: repeat(4, 1fr); } }
+
+    .cs-result-card {
+      border-radius: 1rem;
+      padding: 1.75rem 1.25rem;
+      text-align: center;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      backdrop-filter: blur(8px);
+      transition: background .3s, transform .3s;
+    }
+    .cs-result-card:hover {
+      background: rgba(255,255,255,.1);
+      transform: translateY(-4px);
+    }
+    .cs-result-value {
+      font-size: 2.25rem;
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1;
+      letter-spacing: -.025em;
+      background: linear-gradient(135deg, #93c5fd, #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .cs-result-label {
+      margin-top: .5rem;
+      font-size: .875rem;
+      font-weight: 500;
+      color: rgba(255,255,255,.6);
+      line-height: 1.4;
+    }
+
+    /* ---- TESTIMONIAL ---- */
+    .cs-testimonial {
+      border-radius: 1.5rem;
+      background: linear-gradient(135deg, var(--brand-50), #eef2ff);
+      border: 1px solid var(--brand-100);
+      padding: 2.5rem;
+      margin-top: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .cs-testimonial::before {
+      content: '"';
+      position: absolute;
+      top: -1rem;
+      left: 1.5rem;
+      font-size: 8rem;
+      font-family: Georgia, serif;
+      color: var(--brand-200);
+      line-height: 1;
+      pointer-events: none;
+    }
+    .cs-testimonial-text {
+      position: relative;
+      font-size: 1.125rem;
+      line-height: 1.7;
+      color: var(--slate-700);
+      font-style: italic;
+      margin-bottom: 1.5rem;
+    }
+    .cs-testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .cs-testimonial-avatar {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 9999px;
+      object-fit: cover;
+      border: 2px solid var(--brand-200);
+    }
+    .cs-testimonial-avatar-placeholder {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 9999px;
+      background: linear-gradient(135deg, var(--brand-500), var(--indigo-600));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-weight: 800;
+      font-size: 1.125rem;
+      flex-shrink: 0;
+    }
+    .cs-testimonial-name { font-weight: 700; color: var(--slate-900); font-size: .9375rem; }
+    .cs-testimonial-role { font-size: .8125rem; color: var(--slate-500); }
+    .cs-testimonial-stars {
+      display: flex;
+      gap: .25rem;
+      margin-bottom: .875rem;
+    }
+    .cs-testimonial-stars svg { color: #fbbf24; }
+
+    /* ---- NEXT PROJECT NAV ---- */
+    .cs-project-nav {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    @media (max-width: 479px) { .cs-project-nav { grid-template-columns: 1fr; } }
+
+    .cs-nav-card {
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+      border-radius: 1rem;
+      border: 1.5px solid var(--slate-200);
+      background: var(--white);
+      padding: 1.25rem;
+      text-decoration: none;
+      transition: border-color .2s, box-shadow .2s, transform .2s;
+      overflow: hidden;
+      position: relative;
+    }
+    .cs-nav-card:hover {
+      border-color: var(--brand-300);
+      box-shadow: 0 8px 24px rgba(37,99,235,.12);
+      transform: translateY(-2px);
+    }
+    .cs-nav-card.next { text-align: right; }
+    .cs-nav-direction {
+      font-size: .75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--slate-400);
+      display: flex;
+      align-items: center;
+      gap: .375rem;
+    }
+    .cs-nav-card.next .cs-nav-direction { justify-content: flex-end; }
+    .cs-nav-title { font-size: .9375rem; font-weight: 700; color: var(--slate-900); line-height: 1.3; }
+    .cs-nav-card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: .07;
+      transition: opacity .3s;
+    }
+    .cs-nav-card:hover img { opacity: .12; }
+    .cs-nav-content { position: relative; }
+
+    /* ---- FINAL CTA ---- */
+    .cs-final-cta {
+      text-align: center;
+      padding: 5rem 0;
+      background: linear-gradient(135deg, var(--brand-700), var(--brand-800), var(--indigo-900));
+      position: relative;
+      overflow: hidden;
+    }
+    .cs-final-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 60% 50%, rgba(129,140,248,.3) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cs-final-cta-inner { position: relative; max-width: 48rem; margin: 0 auto; padding: 0 1.25rem; }
+    .cs-final-cta h2 {
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -.025em;
+      margin-bottom: 1rem;
+    }
+    .cs-final-cta p {
+      font-size: 1.0625rem;
+      color: rgba(255,255,255,.75);
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+    .cs-final-cta-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .875rem;
+      justify-content: center;
+    }
+    .cs-wa-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      border-radius: 9999px;
+      background: #22c55e;
+      color: var(--white);
+      padding: .875rem 1.75rem;
+      font-size: .9375rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background .2s, transform .2s;
+      box-shadow: 0 4px 20px rgba(34,197,94,.35);
+    }
+    .cs-wa-btn:hover { background: #16a34a; transform: translateY(-2px); }
+
+    /* ---- BACK LINK ---- */
+    .cs-back {
+      display: inline-flex;
+      align-items: center;
+      gap: .375rem;
+      font-size: .875rem;
+      font-weight: 600;
+      color: rgba(255,255,255,.6);
+      text-decoration: none;
+      transition: color .2s;
+      margin-bottom: 2rem;
+    }
+    .cs-back:hover { color: var(--white); }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header id="navbar">
+    <nav class="nav-inner">
+      <a href="../index.html" class="nav-logo" aria-label="Go to homepage">
+        <span class="nav-logo-badge">OB</span>
+        <span class="nav-logo-text">
+          <strong>Osiberu</strong>
+          <span>Boluwatife</span>
+        </span>
+      </a>
+      <ul class="nav-links">
+        <li><a class="nav-link" href="../index.html#home">Home</a></li>
+        <li><a class="nav-link" href="../index.html#about">About Me</a></li>
+        <li><a class="nav-link" href="../index.html#experience">Experience</a></li>
+        <li><a class="nav-link" href="../index.html#skills">Services</a></li>
+        <li><a class="nav-link active" href="../projects.html">Projects</a></li>
+        <li><a class="nav-link" href="../index.html#contact">Contact</a></li>
+      </ul>
+      <a href="../index.html#contact" class="nav-cta">Hire Me</a>
+      <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </nav>
+    <div class="mobile-menu" id="mobile-menu">
+      <ul>
+        <li><a class="mobile-link" href="../index.html#home">Home</a></li>
+        <li><a class="mobile-link" href="../index.html#about">About Me</a></li>
+        <li><a class="mobile-link" href="../index.html#experience">Experience</a></li>
+        <li><a class="mobile-link" href="../index.html#skills">Services</a></li>
+        <li><a class="mobile-link active" href="../projects.html">Projects</a></li>
+        <li><a class="mobile-link" href="../index.html#contact">Contact</a></li>
+        <li><a class="mobile-cta" href="../index.html#contact">Hire Me</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       1. HERO
+       EDIT: bg image, title, category, niche, description, live URL
+       ============================================================ -->
+  <section class="cs-hero">
+    <img
+      class="cs-hero-img"
+      src="https://images.pexels.com/photos/285814/pexels-photo-285814.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1600&q=80"
+      alt="Corporate Business Website project"
+      loading="eager"
+    />
+    <div class="cs-hero-overlay"></div>
+    <div class="cs-hero-content">
+      <a href="../projects.html" class="cs-back">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+        Back to Projects
+      </a>
+      <div class="cs-hero-meta">
+        <span class="cs-hero-badge cat">Website Design</span><!-- EDIT category -->
+        <span class="cs-hero-badge niche">Corporate</span><!-- EDIT niche -->
+      </div>
+      <h1>Corporate Business Website</h1><!-- EDIT title -->
+      <p class="cs-hero-desc">
+        A conversion-focused corporate website built for a Lagos service company
+        — helping them establish a credible, professional online presence that
+        converts visitors into enquiries.
+      </p><!-- EDIT description -->
+      <div class="cs-hero-btns">
+        <!-- If live URL exists, update href. Otherwise use cs-btn-disabled span -->
+        <a href="https://topcafe.vercel.app/" target="_blank" rel="noopener noreferrer" class="cs-btn-primary">
+          Visit Live Project &nbsp;↗
+        </a>
+        <!-- When live URL is ready, replace above with:
+        <a href="https://YOURPROJECT.netlify.app" target="_blank" rel="noopener noreferrer" class="cs-btn-primary">
+          Visit Live Project &nbsp;↗
+        </a>
+        -->
+        <a href="../index.html#contact" class="cs-btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#22c55e" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.82 9.82 0 001.516 5.26l-.999 3.648 3.972-1.207zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+          Contact Me
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUICK INFO STRIP -->
+  <div class="cs-info-strip">
+    <div class="cs-info-strip-inner">
+      <div class="cs-info-item">
+        <span class="cs-info-label">Client</span>
+        <span class="cs-info-value">Corporate Business</span><!-- EDIT -->
+      </div>
+      <div class="cs-info-item">
+        <span class="cs-info-label">Industry</span>
+        <span class="cs-info-value">Corporate / Services</span><!-- EDIT -->
+      </div>
+      <div class="cs-info-item">
+        <span class="cs-info-label">Services</span>
+        <span class="cs-info-value">Web Design · SEO · Hosting</span><!-- EDIT -->
+      </div>
+      <div class="cs-info-item">
+        <span class="cs-info-label">Year</span>
+        <span class="cs-info-value">2025</span><!-- EDIT -->
+      </div>
+      <div class="cs-info-item">
+        <span class="cs-info-label">Delivery</span>
+        <span class="cs-info-value">3 Days</span><!-- EDIT -->
+      </div>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- ============================================================
+         2. PROJECT OVERVIEW
+         ============================================================ -->
+    <section class="cs-section">
+      <div class="cs-container narrow">
+        <span class="cs-label reveal">Project Overview</span>
+        <div class="cs-two-col">
+          <div class="reveal">
+            <h2>Building a Digital Front Door for a Growing Business</h2><!-- EDIT -->
+            <p class="cs-body-text">
+              The client was a Lagos-based service company operating without a website.
+              Their only digital presence was a WhatsApp number shared on physical flyers
+              — leading to missed enquiries from customers searching online.
+            </p><!-- EDIT -->
+            <p class="cs-body-text">
+              My goal was to build a professional, fast-loading website that immediately
+              communicated trust, showcased their services clearly, and converted visitors
+              into paying customers through a simple WhatsApp-first CTA flow.
+            </p><!-- EDIT -->
+          </div>
+          <div class="reveal">
+            <h2 style="font-size:1.125rem;margin-bottom:1rem">Client Goals</h2>
+            <ul class="cs-list">
+              <li><span class="cs-list-dot"></span>Look professional and credible online</li><!-- EDIT -->
+              <li><span class="cs-list-dot"></span>Rank in Google for local service searches</li><!-- EDIT -->
+              <li><span class="cs-list-dot"></span>Capture customer enquiries via WhatsApp</li><!-- EDIT -->
+              <li><span class="cs-list-dot"></span>Mobile-first for Lagos Android users</li><!-- EDIT -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         3. CHALLENGE
+         ============================================================ -->
+    <section class="cs-section grey">
+      <div class="cs-container narrow">
+        <span class="cs-label reveal">The Challenge</span>
+        <h2 class="reveal">What Was Holding the Business Back</h2><!-- EDIT -->
+        <p class="cs-body-text reveal">
+          Without a website, the business was invisible to customers searching
+          on Google. Competitors with even basic web presences were capturing
+          the majority of digital enquiries. The client also had no way to
+          showcase their work, build credibility, or follow up with prospects
+          professionally.
+        </p><!-- EDIT -->
+        <ul class="cs-list reveal" style="margin-top:1.5rem">
+          <li><span class="cs-list-dot"></span>No online presence or Google discoverability</li><!-- EDIT -->
+          <li><span class="cs-list-dot"></span>No portfolio or social proof to show prospects</li><!-- EDIT -->
+          <li><span class="cs-list-dot"></span>Relying entirely on word-of-mouth referrals</li><!-- EDIT -->
+          <li><span class="cs-list-dot"></span>Losing customers to competitors with websites</li><!-- EDIT -->
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         4. SOLUTION
+         ============================================================ -->
+    <section class="cs-section">
+      <div class="cs-container narrow">
+        <span class="cs-label reveal">The Solution</span>
+        <h2 class="reveal">What I Built and Why</h2><!-- EDIT -->
+        <p class="cs-body-text reveal">
+          I designed and built a clean, fast, fully responsive website optimised
+          for mobile-first Nigerian users. The site features a compelling hero
+          section, a clear services breakdown, social proof via testimonials, and
+          a frictionless WhatsApp CTA flow that converts visitors in seconds.
+        </p><!-- EDIT -->
+        <p class="cs-body-text reveal">
+          The site was deployed to Vercel with a custom .com.ng domain from
+          WhoGoHost, auto-configured SSL, and SEO meta tags targeting the client's
+          local search keywords. Delivered in under 72 hours.
+        </p><!-- EDIT -->
+      </div>
+    </section>
+
+    <!-- ============================================================
+         5. SERVICES PROVIDED
+         ============================================================ -->
+    <section class="cs-section grey">
+      <div class="cs-container">
+        <span class="cs-label reveal">Services Provided</span>
+        <h2 class="reveal">What Was Delivered</h2><!-- EDIT as needed -->
+        <div class="cs-services-grid">
+          <!-- EDIT: add/remove cards as needed -->
+          <div class="cs-service-card reveal">
+            <span class="cs-service-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg>
+            </span>
+            <span>UI/UX Design</span>
+          </div>
+          <div class="cs-service-card reveal">
+            <span class="cs-service-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+            </span>
+            <span>Responsive Build</span>
+          </div>
+          <div class="cs-service-card reveal">
+            <span class="cs-service-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            </span>
+            <span>Local SEO</span>
+          </div>
+          <div class="cs-service-card reveal">
+            <span class="cs-service-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </span>
+            <span>Domain & Hosting</span>
+          </div>
+          <div class="cs-service-card reveal">
+            <span class="cs-service-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </span>
+            <span>WhatsApp CTA Flow</span>
+          </div>
+          <div class="cs-service-card reveal">
+            <span class="cs-service-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </span>
+            <span>Free SSL Setup</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         6. TECHNOLOGIES USED
+         ============================================================ -->
+    <section class="cs-section">
+      <div class="cs-container narrow">
+        <span class="cs-label reveal">Tech Stack</span>
+        <h2 class="reveal">Technologies Used</h2><!-- EDIT -->
+        <div class="cs-tech-grid reveal">
+          <!-- EDIT: add/remove badges -->
+          <span class="cs-tech-badge"><span class="cs-tech-dot"></span>HTML5</span>
+          <span class="cs-tech-badge"><span class="cs-tech-dot"></span>CSS3</span>
+          <span class="cs-tech-badge"><span class="cs-tech-dot"></span>JavaScript</span>
+          <span class="cs-tech-badge"><span class="cs-tech-dot"></span>Vercel</span>
+          <span class="cs-tech-badge"><span class="cs-tech-dot"></span>GitHub</span>
+          <span class="cs-tech-badge"><span class="cs-tech-dot"></span>Web3Forms</span>
+          <span class="cs-tech-badge"><span class="cs-tech-dot"></span>WhoGoHost</span>
+          <span class="cs-tech-badge"><span class="cs-tech-dot"></span>Let's Encrypt SSL</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         7. PROJECT GALLERY
+         EDIT: replace src with real project screenshots
+         ============================================================ -->
+    <section class="cs-section grey">
+      <div class="cs-container">
+        <span class="cs-label reveal">Project Gallery</span>
+        <h2 class="reveal">Screenshots & Screens</h2><!-- EDIT -->
+        <div class="cs-gallery reveal" id="cs-gallery">
+          <div class="cs-gallery-item" data-index="0">
+            <img src="https://images.pexels.com/photos/285814/pexels-photo-285814.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=800&q=80" alt="Homepage screenshot" loading="lazy"/><!-- EDIT: real screenshot -->
+            <div class="cs-gallery-overlay">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg>
+            </div>
+          </div>
+          <div class="cs-gallery-item" data-index="1">
+            <img src="https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=800&q=80" alt="Services section screenshot" loading="lazy"/><!-- EDIT -->
+            <div class="cs-gallery-overlay">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg>
+            </div>
+          </div>
+          <div class="cs-gallery-item" data-index="2">
+            <img src="https://images.pexels.com/photos/265087/pexels-photo-265087.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=800&q=80" alt="Mobile view screenshot" loading="lazy"/><!-- EDIT -->
+            <div class="cs-gallery-overlay">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         8. RESULTS
+         EDIT: update values and labels
+         ============================================================ -->
+    <section class="cs-section dark">
+      <div class="cs-container">
+        <span class="cs-label reveal">Results</span>
+        <h2 class="reveal">What Changed After Launch</h2><!-- EDIT -->
+        <div class="cs-results-grid">
+          <div class="cs-result-card reveal">
+            <div class="cs-result-value">72h</div><!-- EDIT -->
+            <div class="cs-result-label">From brief to live website</div><!-- EDIT -->
+          </div>
+          <div class="cs-result-card reveal">
+            <div class="cs-result-value">100%</div><!-- EDIT -->
+            <div class="cs-result-label">Mobile responsive</div><!-- EDIT -->
+          </div>
+          <div class="cs-result-card reveal">
+            <div class="cs-result-value">3x</div><!-- EDIT -->
+            <div class="cs-result-label">Increase in enquiries</div><!-- EDIT -->
+          </div>
+          <div class="cs-result-card reveal">
+            <div class="cs-result-value">Free</div><!-- EDIT -->
+            <div class="cs-result-label">SSL + Hosting on Vercel</div><!-- EDIT -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         9. TESTIMONIAL
+         EDIT: quote, name, role, initial/avatar
+         ============================================================ -->
+    <section class="cs-section">
+      <div class="cs-container narrow">
+        <span class="cs-label reveal">Client Testimonial</span>
+        <h2 class="reveal">What the Client Said</h2>
+        <div class="cs-testimonial reveal">
+          <div class="cs-testimonial-stars">
+            <!-- 5 stars -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#fbbf24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 7.1-1.01L12 2z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#fbbf24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 7.1-1.01L12 2z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#fbbf24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 7.1-1.01L12 2z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#fbbf24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 7.1-1.01L12 2z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#fbbf24"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 7.1-1.01L12 2z"/></svg>
+          </div>
+          <p class="cs-testimonial-text">
+            "Osiberu delivered our website in 3 days and it looks better than I could
+       have imagined. Customers have already been finding us on Google and
+            calling — something that never happened before. I would 100% recommend
+            him to any business owner."
+          </p><!-- EDIT: real quote -->
+          <div class="cs-testimonial-author">
+            <div class="cs-testimonial-avatar-placeholder">A</div><!-- EDIT: initial or <img> -->
+            <div>
+              <p class="cs-testimonial-name">Adebisi Olanrewaju</p><!-- EDIT -->
+              <p class="cs-testimonial-role">CEO, Corporate Business · Lagos</p><!-- EDIT -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         10. NEXT PROJECT NAV
+         EDIT: update prev/next project details and links
+         ============================================================ -->
+    <section class="cs-section grey">
+      <div class="cs-container">
+        <span class="cs-label reveal">More Projects</span>
+        <h2 class="reveal">Keep Exploring</h2>
+        <div class="cs-project-nav">
+          <!-- PREVIOUS PROJECT -->
+          <a href="fashion-boutique-website.html" class="cs-nav-card reveal"><!-- EDIT href -->
+            <img src="https://images.pexels.com/photos/1536619/pexels-photo-1536619.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=400&q=60" alt="" loading="lazy" aria-hidden="true"/><!-- EDIT img -->
+            <div class="cs-nav-content">
+              <span class="cs-nav-direction">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+                Previous
+              </span>
+              <p class="cs-nav-title">Fashion Boutique Website</p><!-- EDIT -->
+            </div>
+          </a>
+          <!-- NEXT PROJECT -->
+          <a href="restaurant-google-profile.html" class="cs-nav-card next reveal"><!-- EDIT href -->
+            <img src="https://images.pexels.com/photos/5921677/pexels-photo-5921677.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=400&q=60" alt="" loading="lazy" aria-hidden="true"/><!-- EDIT img -->
+            <div class="cs-nav-content">
+              <span class="cs-nav-direction">
+                Next
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+              <p class="cs-nav-title">Restaurant Google Profile</p><!-- EDIT -->
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       11. FINAL CTA
+       ============================================================ -->
+  <section class="cs-final-cta">
+    <div class="cs-final-cta-inner">
+      <h2>Have a project like this?</h2>
+      <p>
+        Whether you need a website, a Google Maps listing, or a full digital
+        presence — I can build and deliver it in days, not weeks.
+      </p>
+      <div class="cs-final-cta-btns">
+        <a href="../index.html#contact" class="cs-btn-primary" style="font-size:1rem;padding:1rem 2rem">
+          Start a Project
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="https://wa.me/2349041490874?text=Hello%20Osiberu%2C%20I%20saw%20your%20case%20study%20and%20I%27d%20like%20to%20discuss%20a%20project."
+           target="_blank" rel="noopener noreferrer" class="cs-wa-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.82 9.82 0 001.516 5.26l-.999 3.648 3.972-1.207zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+          WhatsApp Me
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-row">
+            <span class="footer-badge">OB</span>
+            <span class="footer-brand-name">Osiberu Boluwatife</span>
+          </div>
+          <p class="footer-desc">Website Designer &amp; Digital Marketing Specialist helping businesses grow online.</p>
+        </div>
+        <div>
+          <h3 class="footer-heading">Quick Links</h3>
+          <ul class="footer-links">
+            <li><a class="footer-link" href="../index.html#home">Home</a></li>
+            <li><a class="footer-link" href="../index.html#about">About</a></li>
+            <li><a class="footer-link" href="../projects.html">Projects</a></li>
+            <li><a class="footer-link" href="../index.html#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer-heading">Get in Touch</h3>
+          <ul class="footer-contacts">
+            <li>WhatsApp: 09041490874</li>
+            <li>WhatsApp: 09033372448</li>
+            <li>Call: 09115327236</li>
+          </ul>
+          <a href="../index.html#contact" class="footer-cta">Start a Project</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy" id="footer-copy"></p>
+        <button class="footer-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+          Back to top
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <button id="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+
+  <!-- LIGHTBOX -->
+  <div class="cs-lightbox" id="cs-lightbox" role="dialog" aria-label="Image lightbox">
+    <img id="cs-lightbox-img" src="" alt=""/>
+    <button class="cs-lightbox-close" id="cs-lightbox-close" aria-label="Close lightbox">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+    <button class="cs-lightbox-prev" id="cs-lightbox-prev" aria-label="Previous image">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+    </button>
+    <button class="cs-lightbox-next" id="cs-lightbox-next" aria-label="Next image">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </button>
+  </div>
+
+  <script src="../script.js"></script>
+  <script>
+    /* ---- LIGHTBOX ---- */
+    const galleryItems = document.querySelectorAll('.cs-gallery-item');
+    const lightbox     = document.getElementById('cs-lightbox');
+    const lightboxImg  = document.getElementById('cs-lightbox-img');
+    const lbClose      = document.getElementById('cs-lightbox-close');
+    const lbPrev       = document.getElementById('cs-lightbox-prev');
+    const lbNext       = document.getElementById('cs-lightbox-next');
+    let lbIndex = 0;
+
+    function openLightbox(index){
+      lbIndex = index;
+      const img = galleryItems[lbIndex].querySelector('img');
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox(){
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function lbGo(dir){
+      lbIndex = (lbIndex + dir + galleryItems.length) % galleryItems.length;
+      const img = galleryItems[lbIndex].querySelector('img');
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+    }
+
+    galleryItems.forEach((item, i) => item.addEventListener('click', () => openLightbox(i)));
+    lbClose.addEventListener('click', closeLightbox);
+    lbPrev.addEventListener('click', () => lbGo(-1));
+    lbNext.addEventListener('click', () => lbGo(1));
+    lightbox.addEventListener('click', e => { if(e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => {
+      if(!lightbox.classList.contains('open')) return;
+      if(e.key === 'Escape') closeLightbox();
+      if(e.key === 'ArrowLeft') lbGo(-1);
+      if(e.key === 'ArrowRight') lbGo(1);
+    });
+
+    /* ---- FOOTER YEAR ---- */
+    const fc = document.getElementById('footer-copy');
+    if(fc) fc.textContent = `© ${new Date().getFullYear()} Osiberu Boluwatife. All rights reserved.`;
+
+    /* ---- NAVBAR SCROLL ---- */
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if(nav) nav.classList.toggle('scrolled', window.scrollY > 20);
+      const btt = document.getElementById('back-to-top');
+      if(btt) btt.classList.toggle('visible', window.scrollY > 600);
+    }, {passive:true});
+
+    /* ---- REVEAL ---- */
+    const revEls = document.querySelectorAll('.reveal');
+    if('IntersectionObserver' in window){
+      const ro = new IntersectionObserver(entries => {
+        entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('is-visible'); ro.unobserve(e.target); } });
+      },{threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+      revEls.forEach(el => ro.observe(el));
+    } else {
+      revEls.forEach(el => el.classList.add('is-visible'));
+    }
+  </script>
+</body>
+</html>

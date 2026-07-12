@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Page title</title>
+</head>
+<body>
+    
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Osiberu Boluwatife — CV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+
+    /* ============================================================
+       TOKENS
+       ============================================================ */
+    :root {
+      --blue:      #2563eb;
+      --blue-dark: #1d4ed8;
+      --blue-mid:  #3b82f6;
+      --blue-pale: #eff6ff;
+      --ink:       #0f172a;
+      --ink-2:     #1e293b;
+      --ink-3:     #334155;
+      --muted:     #64748b;
+      --border:    #e2e8f0;
+      --bg:        #f8fafc;
+      --white:     #ffffff;
+      --green:     #16a34a;
+      --page-w:    210mm;
+      --page-h:    297mm;
+    }
+
+    /* ============================================================
+       RESET
+       ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    body {
+      font-family: 'Inter', 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--blue); text-decoration: none; }
+    ul { list-style: none; }
+
+    /* ============================================================
+       SCREEN WRAPPER
+       ============================================================ */
+    .page-wrap {
+      max-width: var(--page-w);
+      margin: 2rem auto;
+      background: var(--white);
+      box-shadow: 0 8px 40px rgba(0,0,0,.12);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    /* ============================================================
+       TOP HEADER BAND
+       ============================================================ */
+    .cv-header {
+      background: var(--ink);
+      padding: 2.5rem 2.5rem 2rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1.5rem;
+      align-items: center;
+    }
+    .cv-header-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: -.03em;
+      color: var(--white);
+      line-height: 1;
+    }
+    .cv-header-name span {
+      color: var(--blue-mid);
+    }
+    .cv-header-title {
+      margin-top: .5rem;
+      font-size: .875rem;
+      font-weight: 600;
+      color: rgba(255,255,255,.6);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    .cv-header-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: .375rem;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 9999px;
+      padding: .3rem .875rem;
+      font-size: .75rem;
+      font-weight: 700;
+      color: var(--blue-mid);
+      margin-top: .875rem;
+      letter-spacing: .06em;
+    }
+    .cv-header-brand::before {
+      content: '';
+      width: .5rem;
+      height: .5rem;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    /* Contact strip */
+    .cv-contact-strip {
+      background: var(--blue);
+      padding: .75rem 2.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      align-items: center;
+    }
+    .cv-contact-item {
+      display: flex;
+      align-items: center;
+      gap: .375rem;
+      font-size: .75rem;
+      font-weight: 600;
+      color: rgba(255,255,255,.9);
+    }
+    .cv-contact-item svg { opacity: .75; flex-shrink: 0; }
+
+    /* ============================================================
+       BODY LAYOUT — two columns
+       ============================================================ */
+    .cv-body {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+    }
+
+    /* ============================================================
+       LEFT SIDEBAR
+       ============================================================ */
+    .cv-sidebar {
+      background: var(--ink-2);
+      padding: 2rem 1.625rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+    }
+
+    .cv-sidebar-section-label {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: .6875rem;
+      font-weight: 800;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--blue-mid);
+      margin-bottom: .875rem;
+      padding-bottom: .5rem;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    /* Skills */
+    .cv-skill-list { display: flex; flex-direction: column; gap: .625rem; }
+    .cv-skill-item { display: flex; flex-direction: column; gap: .3rem; }
+    .cv-skill-name { font-size: .75rem; font-weight: 600; color: rgba(255,255,255,.85); }
+    .cv-skill-bar {
+      height: 4px;
+      border-radius: 9999px;
+      background: rgba(255,255,255,.1);
+      overflow: hidden;
+    }
+    .cv-skill-fill {
+      height: 100%;
+      border-radius: 9999px;
+      background: linear-gradient(90deg, var(--blue-mid), #818cf8);
+    }
+
+    /* Tools badges */
+    .cv-tools-grid { display: flex; flex-wrap: wrap; gap: .375rem; }
+    .cv-tool-badge {
+      border-radius: 4px;
+      padding: .25rem .5rem;
+      font-size: .6875rem;
+      font-weight: 700;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      color: rgba(255,255,255,.75);
+      letter-spacing: .03em;
+    }
+
+    /* Strengths */
+    .cv-strength-list { display: flex; flex-direction: column; gap: .5rem; }
+    .cv-strength-item {
+      display: flex;
+      align-items: flex-start;
+      gap: .5rem;
+      font-size: .75rem;
+      color: rgba(255,255,255,.7);
+      line-height: 1.4;
+    }
+    .cv-strength-dot {
+      flex-shrink: 0;
+      margin-top: .35rem;
+      width: .375rem;
+      height: .375rem;
+      border-radius: 50%;
+      background: var(--blue-mid);
+    }
+
+    /* Stats */
+    .cv-stats { display: flex; flex-direction: column; gap: .625rem; }
+    .cv-stat {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: .5rem .625rem;
+      border-radius: 6px;
+      background: rgba(255,255,255,.05);
+    }
+    .cv-stat-value {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.125rem;
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -.02em;
+    }
+    .cv-stat-label { font-size: .6875rem; font-weight: 500; color: rgba(255,255,255,.5); text-align: right; max-width: 6rem; line-height: 1.3; }
+
+    /* ============================================================
+       MAIN CONTENT
+       ============================================================ */
+    .cv-main {
+      padding: 2rem 2.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.625rem;
+      background: var(--white);
+    }
+
+    .cv-section-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: .6875rem;
+      font-weight: 800;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: .875rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    .cv-section-title::after {
+      content: '';
+      flex: 1;
+      height: 1.5px;
+      background: linear-gradient(90deg, var(--border), transparent);
+    }
+
+    /* Summary */
+    .cv-summary {
+      font-size: .8125rem;
+      line-height: 1.75;
+      color: var(--ink-3);
+    }
+    .cv-summary strong { color: var(--ink); font-weight: 700; }
+
+    /* Experience timeline */
+    .cv-exp-list { display: flex; flex-direction: column; gap: 1.125rem; }
+    .cv-exp-item { display: flex; gap: .875rem; }
+    .cv-exp-line {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .cv-exp-dot {
+      width: .625rem;
+      height: .625rem;
+      border-radius: 50%;
+      background: var(--blue);
+      border: 2px solid var(--white);
+      box-shadow: 0 0 0 2px var(--blue);
+      flex-shrink: 0;
+      margin-top: .35rem;
+    }
+    .cv-exp-connector { flex: 1; width: 1.5px; background: var(--border); margin: .25rem 0; }
+    .cv-exp-item:last-child .cv-exp-connector { display: none; }
+    .cv-exp-content { flex: 1; padding-bottom: .5rem; }
+    .cv-exp-header { display: flex; align-items: flex-start; justify-content: space-between; gap: .5rem; margin-bottom: .25rem; }
+    .cv-exp-role {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: .875rem;
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+    .cv-exp-period {
+      font-size: .6875rem;
+      font-weight: 700;
+      color: var(--white);
+      background: var(--blue);
+      border-radius: 9999px;
+      padding: .15rem .6rem;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .cv-exp-company { font-size: .75rem; font-weight: 600; color: var(--muted); margin-bottom: .5rem; }
+    .cv-exp-points { display: flex; flex-direction: column; gap: .3rem; }
+    .cv-exp-point {
+      display: flex;
+      align-items: flex-start;
+      gap: .5rem;
+      font-size: .75rem;
+      color: var(--ink-3);
+      line-height: 1.5;
+    }
+    .cv-bullet {
+      flex-shrink: 0;
+      width: .25rem;
+      height: .25rem;
+      border-radius: 50%;
+      background: var(--blue);
+      margin-top: .5rem;
+    }
+
+    /* Clients */
+    .cv-clients-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: .625rem;
+    }
+    .cv-client-card {
+      border-radius: 8px;
+      border: 1.5px solid var(--border);
+      padding: .75rem .875rem;
+      display: flex;
+      flex-direction: column;
+      gap: .25rem;
+      transition: border-color .2s;
+    }
+    .cv-client-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: .75rem;
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1.3;
+    }
+    .cv-client-type {
+      font-size: .6875rem;
+      font-weight: 500;
+      color: var(--muted);
+    }
+    .cv-client-tag {
+      display: inline-block;
+      font-size: .625rem;
+      font-weight: 700;
+      color: var(--blue);
+      background: var(--blue-pale);
+      border-radius: 4px;
+      padding: .125rem .375rem;
+      margin-top: .25rem;
+      letter-spacing: .04em;
+    }
+
+    /* Education */
+    .cv-edu-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: .75rem;
+      border-radius: 8px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+    }
+    .cv-edu-icon {
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 8px;
+      background: var(--blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--white);
+    }
+    .cv-edu-title { font-size: .8125rem; font-weight: 700; color: var(--ink); }
+    .cv-edu-sub   { font-size: .6875rem; color: var(--muted); margin-top: .125rem; }
+
+    /* ============================================================
+       FOOTER BAR
+       ============================================================ */
+    .cv-footer {
+      background: var(--ink);
+      padding: .875rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .cv-footer-text { font-size: .6875rem; color: rgba(255,255,255,.4); }
+    .cv-footer-url  { font-size: .6875rem; font-weight: 700; color: var(--blue-mid); }
+
+    /* ============================================================
+       PRINT BUTTON (screen only)
+       ============================================================ */
+    .print-bar {
+      max-width: var(--page-w);
+      margin: 0 auto 1rem;
+      display: flex;
+      justify-content: flex-end;
+      gap: .625rem;
+      padding: 0 .5rem;
+    }
+    .print-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      border-radius: 9999px;
+      padding: .625rem 1.25rem;
+      font-size: .8125rem;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      transition: all .2s;
+    }
+    .print-btn.primary {
+      background: #2563eb;
+      color: #fff;
+    }
+    .print-btn.primary:hover { background: #1d4ed8; transform: translateY(-1px); }
+    .print-btn.ghost {
+      background: #fff;
+      color: #334155;
+      border: 1.5px solid #e2e8f0;
+    }
+    .print-btn.ghost:hover { border-color: #94a3b8; }
+
+    /* ============================================================
+       @MEDIA PRINT
+       ============================================================ */
+    @page {
+      size: A4;
+      margin: 0;
+    }
+    @media print {
+      body { background: var(--white); }
+      .print-bar { display: none; }
+      .page-wrap {
+        margin: 0;
+        box-shadow: none;
+        border-radius: 0;
+        max-width: 100%;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PRINT BAR -->
+  <div class="print-bar">
+    <button class="print-btn ghost" onclick="window.history.back()">← Back</button>
+    <button class="print-btn primary" onclick="window.print()">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Save as PDF
+    </button>
+  </div>
+
+  <!-- CV PAGE -->
+  <div class="page-wrap">
+
+    <!-- ── HEADER ── -->
+    <div class="cv-header">
+      <div>
+        <h1 class="cv-header-name">Osiberu <span>Boluwatife</span></h1>
+        <p class="cv-header-title">Website Designer &amp; Digital Marketing Specialist</p>
+        <span class="cv-header-brand">boludevs — Available for New Projects</span>
+      </div>
+    </div>
+
+    <!-- ── CONTACT STRIP ── -->
+    <div class="cv-contact-strip">
+      <div class="cv-contact-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        09041490874
+      </div>
+      <div class="cv-contact-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        bolemmdigitalz@gmail.com
+      </div>
+      <div class="cv-contact-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        boludevs.name.ng
+      </div>
+      <div class="cv-contact-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        linkedin.com/in/osiberuboluwatife
+      </div>
+      <div class="cv-contact-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Lagos, Nigeria
+      </div>
+    </div>
+
+    <!-- ── BODY ── -->
+    <div class="cv-body">
+
+      <!-- ════ SIDEBAR ════ -->
+      <aside class="cv-sidebar">
+
+        <!-- Stats -->
+        <div>
+          <p class="cv-sidebar-section-label">At a Glance</p>
+          <div class="cv-stats">
+            <div class="cv-stat">
+              <span class="cv-stat-value">50+</span>
+              <span class="cv-stat-label">Projects Delivered</span>
+            </div>
+            <div class="cv-stat">
+              <span class="cv-stat-value">2023</span>
+              <span class="cv-stat-label">Year Started</span>
+            </div>
+            <div class="cv-stat">
+              <span class="cv-stat-value">72h</span>
+              <span class="cv-stat-label">Avg. Delivery Time</span>
+            </div>
+            <div class="cv-stat">
+              <span class="cv-stat-value">100%</span>
+              <span class="cv-stat-label">Client Satisfaction</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Core Skills -->
+        <div>
+          <p class="cv-sidebar-section-label">Core Skills</p>
+          <ul class="cv-skill-list">
+            <li class="cv-skill-item">
+              <span class="cv-skill-name">Website Design</span>
+              <div class="cv-skill-bar"><div class="cv-skill-fill" style="width:95%"></div></div>
+            </li>
+            <li class="cv-skill-item">
+              <span class="cv-skill-name">Google Maps / Local SEO</span>
+              <div class="cv-skill-bar"><div class="cv-skill-fill" style="width:92%"></div></div>
+            </li>
+            <li class="cv-skill-item">
+              <span class="cv-skill-name">Social Media Advertising</span>
+              <div class="cv-skill-bar"><div class="cv-skill-fill" style="width:88%"></div></div>
+            </li>
+            <li class="cv-skill-item">
+              <span class="cv-skill-name">Graphic Design & Branding</span>
+              <div class="cv-skill-bar"><div class="cv-skill-fill" style="width:90%"></div></div>
+            </li>
+            <li class="cv-skill-item">
+              <span class="cv-skill-name">Content Strategy</span>
+              <div class="cv-skill-bar"><div class="cv-skill-fill" style="width:82%"></div></div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Tools -->
+        <div>
+          <p class="cv-sidebar-section-label">Tools & Stack</p>
+          <div class="cv-tools-grid">
+            <span class="cv-tool-badge">HTML5</span>
+            <span class="cv-tool-badge">CSS3</span>
+            <span class="cv-tool-badge">JavaScript</span>
+            <span class="cv-tool-badge">Lovable</span>
+            <span class="cv-tool-badge">GitHub</span>
+            <span class="cv-tool-badge">Vercel</span>
+            <span class="cv-tool-badge">Netlify</span>
+            <span class="cv-tool-badge">WhoGoHost</span>
+            <span class="cv-tool-badge">Figma</span>
+            <span class="cv-tool-badge">Canva</span>
+            <span class="cv-tool-badge">Meta Ads</span>
+            <span class="cv-tool-badge">Web3Forms</span>
+            <span class="cv-tool-badge">Google Business</span>
+          </div>
+        </div>
+
+        <!-- Strengths -->
+        <div>
+          <p class="cv-sidebar-section-label">Key Strengths</p>
+          <ul class="cv-strength-list">
+            <li class="cv-strength-item"><span class="cv-strength-dot"></span>72-hour website delivery</li>
+            <li class="cv-strength-item"><span class="cv-strength-dot"></span>Mobile-first for Nigerian users</li>
+            <li class="cv-strength-item"><span class="cv-strength-dot"></span>End-to-end: design → deploy → domain</li>
+            <li class="cv-strength-item"><span class="cv-strength-dot"></span>WhatsApp-first client workflow</li>
+            <li class="cv-strength-item"><span class="cv-strength-dot"></span>Self-taught, continuously learning</li>
+            <li class="cv-strength-item"><span class="cv-strength-dot"></span>Proven results for local businesses</li>
+          </ul>
+        </div>
+
+      </aside>
+
+      <!-- ════ MAIN ════ -->
+      <main class="cv-main">
+
+        <!-- Summary -->
+        <section>
+          <p class="cv-section-title">Professional Summary</p>
+          <p class="cv-summary">
+            Self-taught Nigerian <strong>website designer</strong> and
+            <strong>digital marketing specialist</strong> with 2+ years of hands-on
+            experience building modern, mobile-first websites and managing digital
+            growth campaigns for local businesses across Lagos. Founder of
+            <strong>boludevs</strong> — delivering end-to-end digital solutions from
+            design and development through to live deployment, custom domains, and SSL.
+            Known for fast 72-hour turnaround, honest communication, and measurable
+            results for Nigerian businesses of all sizes.
+          </p>
+        </section>
+
+        <!-- Experience -->
+        <section>
+          <p class="cv-section-title">Work Experience</p>
+          <ul class="cv-exp-list">
+
+            <li class="cv-exp-item">
+              <div class="cv-exp-line">
+                <div class="cv-exp-dot"></div>
+                <div class="cv-exp-connector"></div>
+              </div>
+              <div class="cv-exp-content">
+                <div class="cv-exp-header">
+                  <span class="cv-exp-role">Freelance Website Designer</span>
+                  <span class="cv-exp-period">2023 — Present</span>
+                </div>
+                <p class="cv-exp-company">Self-Employed · boludevs · Lagos, Nigeria</p>
+                <ul class="cv-exp-points">
+                  <li class="cv-exp-point"><span class="cv-bullet"></span>Built and deployed mobile-first websites for local Nigerian businesses across multiple niches using Lovable, GitHub and Vercel.</li>
+                  <li class="cv-exp-point"><span class="cv-bullet"></span>Connected client sites to custom .com.ng/.name.ng domains with free SSL — full end-to-end delivery within 72 hours.</li>
+                  <li class="cv-exp-point"><span class="cv-bullet"></span>Clients include SALAU ADESANWO (ADESHOTIT), TOPCAFÉ NIGERIA, and BAIVO (short video platform).</li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="cv-exp-item">
+              <div class="cv-exp-line">
+                <div class="cv-exp-dot"></div>
+                <div class="cv-exp-connector"></div>
+              </div>
+              <div class="cv-exp-content">
+                <div class="cv-exp-header">
+                  <span class="cv-exp-role">Google Business Profile Specialist</span>
+                  <span class="cv-exp-period">2023 — Present</span>
+                </div>
+                <p class="cv-exp-company">Local SEO · Lagos, Nigeria</p>
+                <ul class="cv-exp-points">
+                  <li class="cv-exp-point"><span class="cv-bullet"></span>Set up and optimised Google Business Profiles for restaurants, salons, schools and retail businesses across Lagos.</li>
+                  <li class="cv-exp-point"><span class="cv-bullet"></span>Improved local search visibility, helping clients appear in Google Maps results for their target keywords.</li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="cv-exp-item">
+              <div class="cv-exp-line">
+                <div class="cv-exp-dot"></div>
+                <div class="cv-exp-connector"></div>
+              </div>
+              <div class="cv-exp-content">
+                <div class="cv-exp-header">
+                  <span class="cv-exp-role">Digital Marketing Consultant</span>
+                  <span class="cv-exp-period">2023 — Present</span>
+                </div>
+                <p class="cv-exp-company">Consulting · Lagos, Nigeria</p>
+                <ul class="cv-exp-points">
+                  <li class="cv-exp-point"><span class="cv-bullet"></span>Designed and managed Meta (Facebook & Instagram) ad campaigns for brand awareness and lead generation.</li>
+                  <li class="cv-exp-point"><span class="cv-bullet"></span>Built content calendars and strategies that grew client audiences and increased customer engagement measurably.</li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="cv-exp-item">
+              <div class="cv-exp-line">
+                <div class="cv-exp-dot"></div>
+                <div class="cv-exp-connector"></div>
+              </div>
+              <div class="cv-exp-content">
+                <div class="cv-exp-header">
+                  <span class="cv-exp-role">Graphic Designer</span>
+                  <span class="cv-exp-period">2023 — Present</span>
+                </div>
+                <p class="cv-exp-company">Creative · Lagos, Nigeria</p>
+                <ul class="cv-exp-points">
+                  <li class="cv-exp-point"><span class="cv-bullet"></span>Designed logos, brand identities and complete visual systems for new and growing Nigerian businesses.</li>
+                  <li class="cv-exp-point"><span class="cv-bullet"></span>Delivered flyers, social media graphics and marketing assets for print and digital channels.</li>
+                </ul>
+              </div>
+            </li>
+
+          </ul>
+        </section>
+
+        <!-- Featured Clients -->
+        <section>
+          <p class="cv-section-title">Featured Clients</p>
+          <div class="cv-clients-grid">
+
+            <div class="cv-client-card">
+              <span class="cv-client-name">SALAU ADESANWO</span>
+              <span class="cv-client-type">ADESHOTIT</span>
+              <span class="cv-client-tag">Fashion & Retail</span>
+            </div>
+
+            <div class="cv-client-card">
+              <span class="cv-client-name">TOPCAFÉ NIGERIA</span>
+              <span class="cv-client-type">Food & Beverage</span>
+              <span class="cv-client-tag">Restaurant</span>
+            </div>
+
+            <div class="cv-client-card">
+              <span class="cv-client-name">BAIVO</span>
+              <span class="cv-client-type">Short Video Platform</span>
+              <span class="cv-client-tag">Tech / SaaS</span>
+            </div>
+
+            <div class="cv-client-card">
+              <span class="cv-client-name">CHOSENVINE TUTORS</span>
+              <span class="cv-client-type">Tutorial Centre · Ikorodu</span>
+              <span class="cv-client-tag">Education</span>
+            </div>
+
+            <div class="cv-client-card">
+              <span class="cv-client-name">GRÄS RESTAURANT</span>
+              <span class="cv-client-type">Fine Dining · Victoria Island</span>
+              <span class="cv-client-tag">Restaurant</span>
+            </div>
+
+            <div class="cv-client-card">
+              <span class="cv-client-name">FAREEEDAH LUXE</span>
+              <span class="cv-client-type">Scents &amp; Scarves</span>
+              <span class="cv-client-tag">E-Commerce</span>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- Education -->
+        <section>
+          <p class="cv-section-title">Education</p>
+          <div class="cv-edu-item">
+            <div class="cv-edu-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1 2.5 3 6 3s6-2 6-3v-5"/></svg>
+            </div>
+            <div>
+              <p class="cv-edu-title">Secondary School Certificate</p>
+              <p class="cv-edu-sub">Nigeria · Completed</p>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div><!-- end cv-body -->
+
+    <!-- ── FOOTER ── -->
+    <div class="cv-footer">
+      <span class="cv-footer-text">© 202y Osiberu Boluwatife · All rights reserved</span>
+      <span class="cv-footer-url">boludevs.name.ng</span>
+    </div>
+
+  </div><!-- end page-wrap -->
+<script src="cvscript.js"></script>
+</body>
+</html>

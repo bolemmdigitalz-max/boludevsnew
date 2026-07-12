@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>All Projects | Osiberu Boluwatife — boludevs</title>
+  <meta name="description" content="Browse all web design, Google Maps, social media advertising and graphic design projects by Osiberu Boluwatife (boludevs), Lagos Nigeria."/>
+  <meta name="robots" content="index, follow"/>
+  <meta name="theme-color" content="#2563eb"/>
+  <meta property="og:title"       content="All Projects | Osiberu Boluwatife — boludevs"/>
+  <meta property="og:description" content="Browse all web design, Google Maps, social media and graphic design projects."/>
+  <meta property="og:type"        content="website"/>
+  <meta property="og:url"         content="https://boludevs.name.ng/projects.html"/>
+  <meta property="og:image"       content="https://boludevs.name.ng/images/preview-image.png"/>
+  <link rel="canonical"           href="https://boludevs.name.ng/projects.html"/>
+  <link rel="icon" type="image/x-icon" href="favicon.ico"/>
+  <link rel="apple-touch-icon"    href="apple-touch-icon.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* Projects page specific */
+    .pp-hero {
+      background: linear-gradient(135deg, var(--brand-700), var(--brand-800), var(--indigo-900));
+      padding: 8rem 0 4rem; text-align: center; color: var(--white);
+      position: relative; overflow: hidden;
+    }
+    .pp-hero::before {
+      content:''; position:absolute; inset:0;
+      background: radial-gradient(ellipse at 30% 50%, rgba(99,102,241,.3) 0%, transparent 70%);
+      pointer-events:none;
+    }
+    .pp-hero .eyebrow { background:rgba(255,255,255,.1); color:var(--brand-200); }
+    .pp-hero h1 { font-size:2.25rem; font-weight:800; color:var(--white); margin-top:1rem; letter-spacing:-.025em; }
+    @media(min-width:640px){ .pp-hero h1 { font-size:3rem; } }
+    .pp-hero p  { color:rgba(255,255,255,.7); font-size:1rem; margin-top:.75rem; max-width:36rem; margin-left:auto; margin-right:auto; }
+
+    .pp-back-link {
+      display:inline-flex; align-items:center; gap:.375rem;
+      font-size:.875rem; font-weight:600; color:rgba(255,255,255,.6);
+      margin-bottom:1.5rem; transition:color .2s;
+    }
+    .pp-back-link:hover { color:var(--white); }
+
+    /* Controls */
+    .pp-controls {
+      background: var(--white); border-bottom: 1px solid var(--slate-100);
+      padding: 1.5rem 0; position:sticky; top:72px; z-index:40;
+      box-shadow: 0 2px 12px rgba(0,0,0,.04);
+    }
+    .pp-controls-inner {
+      max-width:1280px; margin:0 auto; padding:0 1.25rem;
+      display:flex; flex-direction:column; gap:1rem;
+    }
+    @media(min-width:1024px){ .pp-controls-inner { padding:0 2rem; } }
+
+    /* Search */
+    .pp-search-wrap { position:relative; max-width:28rem; width:100%; }
+    .pp-search-icon { position:absolute; left:.875rem; top:50%; transform:translateY(-50%); color:var(--slate-400); pointer-events:none; display:flex; }
+    #pp-search {
+      width:100%; border-radius:9999px; border:1.5px solid var(--slate-200);
+      background:var(--slate-50); padding:.75rem 1rem .75rem 2.5rem;
+      font-size:.9375rem; font-family:inherit; color:var(--slate-800);
+      outline:none; transition:border-color .2s, box-shadow .2s;
+    }
+    #pp-search:focus { border-color:var(--brand-400); box-shadow:0 0 0 3px rgba(59,130,246,.12); }
+
+    /* Niche tags */
+    .pp-niche-row { display:flex; flex-wrap:wrap; gap:.5rem; }
+    .niche-tag-btn {
+      border-radius:9999px; padding:.4375rem 1rem;
+      font-size:.8125rem; font-weight:700; border:1.5px solid var(--slate-200);
+      background:var(--white); color:var(--slate-600);
+      transition:all .2s; cursor:pointer; font-family:inherit;
+    }
+    .niche-tag-btn:hover { border-color:var(--brand-300); color:var(--brand-700); background:var(--brand-50); }
+    .niche-tag-btn.active { background:var(--brand-600); color:var(--white); border-color:var(--brand-600); box-shadow:0 4px 12px rgba(37,99,235,.25); }
+
+    /* Main content */
+    .pp-main { background:var(--slate-50); padding:2.5rem 0 4rem; }
+    .pp-main-inner { max-width:1280px; margin:0 auto; padding:0 1.25rem; }
+    @media(min-width:1024px){ .pp-main-inner { padding:0 2rem; } }
+
+    /* Info row */
+    .pp-info-row { display:flex; align-items:center; justify-content:space-between; margin-bottom:1.5rem; flex-wrap:wrap; gap:.5rem; }
+    #pp-info { font-size:.9375rem; font-weight:600; color:var(--slate-500); }
+
+    /* Grid */
+    #pp-projects-grid { display:grid; gap:1.5rem; grid-template-columns:1fr; }
+    @media(min-width:640px)  { #pp-projects-grid { grid-template-columns:repeat(2,1fr); } }
+    @media(min-width:1024px) { #pp-projects-grid { grid-template-columns:repeat(3,1fr); } }
+
+    /* Empty */
+    #pp-empty {
+      display:none; border-radius:1rem; border:2px dashed var(--slate-300);
+      background:var(--white); padding:4rem; text-align:center;
+    }
+    #pp-empty p:first-child { font-size:1rem; font-weight:600; color:var(--slate-700); }
+    #pp-empty p:last-child  { font-size:.875rem; color:var(--slate-500); margin-top:.25rem; }
+
+    /* Pagination */
+    .pp-pagination {
+      display:flex; align-items:center; justify-content:center; gap:1rem;
+      margin-top:3rem; flex-wrap:wrap;
+    }
+    .pp-pag-btn {
+      display:inline-flex; align-items:center; gap:.5rem;
+      border-radius:9999px; padding:.625rem 1.5rem;
+      font-size:.9375rem; font-weight:700; font-family:inherit;
+      border:2px solid var(--slate-200); background:var(--white);
+      color:var(--slate-700); transition:all .2s; cursor:pointer;
+    }
+    .pp-pag-btn:hover:not(:disabled) { border-color:var(--brand-400); color:var(--brand-700); background:var(--brand-50); }
+    .pp-pag-btn:disabled { opacity:.4; cursor:not-allowed; }
+    .pp-pag-btn.primary { background:var(--brand-600); color:var(--white); border-color:var(--brand-600); box-shadow:0 4px 12px rgba(37,99,235,.25); }
+    .pp-pag-btn.primary:hover:not(:disabled) { background:var(--brand-700); }
+    #pp-page-label { font-size:.9375rem; font-weight:600; color:var(--slate-500); min-width:8rem; text-align:center; }
+
+    /* CTA banner */
+    .pp-cta-banner {
+      background:linear-gradient(135deg, var(--brand-600), var(--indigo-600));
+      border-radius:1.5rem; padding:2.5rem; text-align:center;
+      margin-top:3.5rem; color:var(--white);
+    }
+    .pp-cta-banner h3 { font-size:1.5rem; font-weight:800; margin-bottom:.5rem; }
+    .pp-cta-banner p  { color:rgba(255,255,255,.8); margin-bottom:1.5rem; font-size:.9375rem; }
+    .pp-cta-btn {
+      display:inline-flex; align-items:center; gap:.5rem;
+      border-radius:9999px; background:var(--white); color:var(--brand-700);
+      padding:.875rem 2rem; font-size:1rem; font-weight:700;
+      transition:transform .2s, box-shadow .2s;
+    }
+    .pp-cta-btn:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,.15); }
+
+    /* Project niche tag pill */
+    .project-niche-tag {
+      display:inline-block; border-radius:9999px;
+      padding:.2rem .625rem; font-size:.6875rem; font-weight:700;
+      background:var(--brand-50); color:var(--brand-700);
+      margin-bottom:.5rem; border:1px solid var(--brand-100);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header id="navbar">
+    <nav class="nav-inner">
+      <a href="index.html" class="nav-logo" aria-label="Go to homepage">
+        <span class="nav-logo-badge">OB</span>
+        <span class="nav-logo-text">
+          <strong>Osiberu</strong>
+          <span>Boluwatife</span>
+        </span>
+      </a>
+      <ul class="nav-links">
+        <li><a class="nav-link" href="index.html#home">Home</a></li>
+        <li><a class="nav-link" href="index.html#about">About Me</a></li>
+        <li><a class="nav-link" href="index.html#experience">Experience</a></li>
+        <li><a class="nav-link" href="index.html#tools">Tools</a></li>
+        <li><a class="nav-link" href="index.html#skills">Services</a></li>
+        <li><a class="nav-link active" href="projects.html">Projects</a></li>
+        <li><a class="nav-link" href="index.html#contact">Contact</a></li>
+      </ul>
+      <a href="index.html#contact" class="nav-cta">Hire Me</a>
+      <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </nav>
+    <div class="mobile-menu" id="mobile-menu">
+      <ul>
+        <li><a class="mobile-link" href="index.html#home">Home</a></li>
+        <li><a class="mobile-link" href="index.html#about">About Me</a></li>
+        <li><a class="mobile-link" href="index.html#experience">Experience</a></li>
+        <li><a class="mobile-link" href="index.html#tools">Tools</a></li>
+        <li><a class="mobile-link" href="index.html#skills">Services</a></li>
+        <li><a class="mobile-link active" href="projects.html">Projects</a></li>
+        <li><a class="mobile-link" href="index.html#contact">Contact</a></li>
+        <li><a class="mobile-cta"  href="index.html#contact">Hire Me</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- PAGE ROOT (used by script.js to detect this page) -->
+  <div id="projects-page-root">
+
+    <!-- HERO -->
+    <div class="pp-hero">
+      <div class="container" style="position:relative">
+        <a href="index.html" class="pp-back-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+          Back to Home
+        </a>
+        <div class="section-heading" style="margin-bottom:0">
+          <span class="eyebrow">Portfolio</span>
+          <h1>All Projects</h1>
+          <p>Every website, listing, campaign and brand I've built — browse by niche or search below.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- STICKY CONTROLS -->
+    <div class="pp-controls">
+      <div class="pp-controls-inner">
+
+        <!-- Search -->
+        <div class="pp-search-wrap">
+          <span class="pp-search-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          </span>
+          <input type="text" id="pp-search" placeholder="Search projects, niches, services…" aria-label="Search projects"/>
+        </div>
+
+        <!-- Niche tag filters (rendered by JS) -->
+        <div class="pp-niche-row" id="niche-tags" role="group" aria-label="Filter by niche"></div>
+
+      </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main class="pp-main">
+      <div class="pp-main-inner">
+
+        <!-- Info row -->
+        <div class="pp-info-row">
+          <p id="pp-info"></p>
+        </div>
+
+        <!-- Projects grid (5 per page) -->
+        <div id="pp-projects-grid"></div>
+
+        <!-- Empty state -->
+        <div id="pp-empty">
+          <p>No projects found</p>
+          <p>Try a different search term or niche filter.</p>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pp-pagination">
+          <button class="pp-pag-btn" id="pp-prev" aria-label="Previous page">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+            Previous
+          </button>
+          <span id="pp-page-label">Page 1 of 3</span>
+          <button class="pp-pag-btn primary" id="pp-next" aria-label="Next page">
+            Next
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+
+        <!-- CTA Banner -->
+        <div class="pp-cta-banner">
+          <h3>Don't see your niche?</h3>
+          <p>I build for every type of Nigerian business — restaurants, schools, fashion brands, real estate and more. Let's talk about yours.</p>
+          <a href="index.html#contact" class="pp-cta-btn">
+            Start a Project
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+
+      </div>
+    </main>
+
+  </div><!-- end #projects-page-root -->
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-row">
+            <span class="footer-badge">OB</span>
+            <span class="footer-brand-name">Osiberu Boluwatife</span>
+          </div>
+          <p class="footer-desc">Website Designer &amp; Digital Marketing Specialist helping businesses grow online with modern design and smart marketing.</p>
+        </div>
+        <div>
+          <h3 class="footer-heading">Quick Links</h3>
+          <ul class="footer-links">
+            <li><a class="footer-link" href="index.html#home">Home</a></li>
+            <li><a class="footer-link" href="index.html#about">About Me</a></li>
+            <li><a class="footer-link" href="index.html#experience">Experience</a></li>
+            <li><a class="footer-link" href="index.html#skills">Services</a></li>
+            <li><a class="footer-link" href="projects.html">All Projects</a></li>
+            <li><a class="footer-link" href="index.html#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer-heading">Get in Touch</h3>
+          <ul class="footer-contacts">
+            <li>WhatsApp: 09041490874</li>
+            <li>WhatsApp: 09033372448</li>
+            <li>Call: 09115327236</li>
+          </ul>
+          <a href="index.html#contact" class="footer-cta">Start a Project</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy" id="footer-copy"></p>
+        <button class="footer-top-btn" onclick="backToTopFn()">
+          Back to top
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <button id="back-to-top" aria-label="Back to top" onclick="backToTopFn()">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>
