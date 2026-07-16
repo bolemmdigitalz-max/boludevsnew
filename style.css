@@ -345,10 +345,19 @@ ul { list-style: none; }
 }
 
 .hero-grid {
-  position: relative; display: grid; gap: 3rem; align-items: center;
+  position: relative;
+  display: grid;
+  gap: 3rem;
+  align-items: center;
+  grid-template-columns: 1fr; /* mobile: stacked */
 }
-@media (min-width: 1024px) { .hero-grid { grid-template-columns: 1fr 1fr; gap: 2rem; } }
-
+@media (min-width: 768px) {
+  .hero-grid {
+    grid-template-columns: 1fr 1fr; /* tablet + desktop: side by side */
+    gap: 2rem;
+    align-items: center;
+  }
+}
 .hero-content { text-align: center; }
 @media (min-width: 1024px) { .hero-content { text-align: left; } }
 
@@ -448,7 +457,7 @@ ul { list-style: none; }
   aspect-ratio: 4/5;
   width: 100%;
   object-fit: cover;
-  object-position: center 15%;
+  object-position: center 20%;
 }
 .hero-location-card {
   position: absolute; bottom: -1.25rem; left: -1.25rem;
