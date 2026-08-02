@@ -353,7 +353,7 @@ grid-template-columns: 1fr; /* mobile: stacked */
 }
 @media (min-width: 768px) {
 .hero-grid {
-grid-template-columns: 1fr 1fr; / tablet + desktop: side by side */
+grid-template-columns: 1fr 1fr; /* tablet + desktop: side by side */
 gap: 2rem;
 align-items: center;
 }
